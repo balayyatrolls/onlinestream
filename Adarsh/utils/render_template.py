@@ -7,7 +7,6 @@ import urllib.parse
 import aiofiles
 import logging
 import aiohttp
-import html
 
 
 async def render_page(id, secure_hash):
