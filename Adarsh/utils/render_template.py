@@ -36,7 +36,7 @@ async def render_page(id, secure_hash):
 
    
     
-    
-    file_name_html = html.escape(file_data.file_name.strip())
     return html
+    file_name_html = html.escape(file_data.file_name.strip())
+    
     
