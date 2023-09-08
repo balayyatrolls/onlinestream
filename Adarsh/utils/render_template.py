@@ -34,6 +34,8 @@ async def render_page(id, secure_hash):
                     file_size = humanbytes(int(u.headers.get('Content-Length')))
                     html = (await r.read()) % (heading, file_data.file_name, src, file_size)
 
-    file_name_html = html.escape(file_data.file_name.strip())
+   
     
     return html
+    file_name_html = html.escape(file_data.file_name.strip())
+    
