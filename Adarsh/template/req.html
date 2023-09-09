@@ -19,12 +19,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Delius">
     <link rel="stylesheet" href="https://cdn.plyr.io/3.6.12/plyr.css" />
     <script src="https://cdn.tailwindcss.com"></script>
-	<!-- Add these lines to your HTML head section -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<style>
+<!-- Add these lines to your HTML head section -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+ <style>
         /* Your CSS code here */
         .share-icon {
             background-image: linear-gradient(135deg, #ff2a68, #6633ff);
@@ -42,7 +42,6 @@
         }
     </style>
 
-
 </head>
 
 <body class="bg-black">
@@ -55,10 +54,14 @@
                             Tma Adda
                           </span>
                     </a>
-		       <div class="share-icon">
-            <a class="navbar-brand text-light fw-bold" href="#" class="text-light fs-4" id="shareLink">
-                <i class="bi bi-share text-light"></i>
-            </a>
+  </a>
+              <div class="share-icon">
+                
+
+            <a class="navbar-brand  text-light fw-bold " href="#" class="text-light fs-4" id="shareLink">
+            <i class="bi bi-share text-light"></i>            </a>
+                  </div>
+
                   </div>
                </div>
     </header>
@@ -340,7 +343,7 @@
         }
 
     </script>
-	<script>
+<script>
 document.getElementById('shareLink').addEventListener('click', function () {
     if (navigator.share) {
         navigator.share({
@@ -355,7 +358,7 @@ document.getElementById('shareLink').addEventListener('click', function () {
         console.log('Web Share API is not supported in this browser.');
         // You can provide a fallback sharing method for unsupported browsers here.
     }
-});
+})
 </script>
 
 
