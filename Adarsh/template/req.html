@@ -325,6 +325,29 @@
         }
 
     </script>
+	<script>
+  const shareButton = document.getElementById('shareButton');
+
+  // Check if the Web Share API is supported
+  if (navigator.share) {
+    shareButton.addEventListener('click', () => {
+      // Use the Web Share API
+      navigator.share({
+        title: 'Share Title',
+        text: 'Share Text',
+        url: 'https://example.com'
+      })
+      .then(() => console.log('Shared successfully'))
+      .catch(error => console.error('Error sharing:', error));
+    });
+  } else {
+    // Fallback: Open a custom sharing dialog or provide links to share manually
+    shareButton.addEventListener('click', () => {
+      // Implement your custom sharing logic here
+      alert('Sharing not supported in this browser. You can manually share the content.');
+    });
+  }
+	</script>
 	
 
 
