@@ -323,6 +323,24 @@
         }
 
     </script>
+	<script>
+document.getElementById('shareLink').addEventListener('click', function () {
+    if (navigator.share) {
+        navigator.share({
+            title: document.title,
+            url: window.location.href
+        }).then(() => {
+            console.log('Shared successfully');
+        }).catch((error) => {
+            console.error('Error sharing:', error);
+        });
+    } else {
+        console.log('Web Share API is not supported in this browser.');
+        // You can provide a fallback sharing method for unsupported browsers here.
+    }
+});
+</script>
+
 
     <!--🥰  Thank you for giving me credit @LazyDeveloperr  🥰 -->
 </body>
