@@ -8,7 +8,6 @@ import aiofiles
 import logging
 import aiohttp
 
-
 async def render_page(id, secure_hash):
     file_data = await get_file_ids(StreamBot, int(Var.BIN_CHANNEL), int(id))
     if file_data.unique_id[:6] != secure_hash:
@@ -16,31 +15,25 @@ async def render_page(id, secure_hash):
         logging.debug(f"Invalid hash for message with - ID {id}")
         raise InvalidHash
     src = urllib.parse.urljoin(Var.URL, f'{secure_hash}{str(id)}')
+    
+    # Remove underscores from file_data.file_name
+    file_name_no_underscores = file_data.file_name.replace("_", " ")
+    
     if str(file_data.mime_type.split('/')[0].strip()) == 'video':
         async with aiofiles.open('Adarsh/template/req.html') as r:
-            heading = 'Watch {}'.format(file_data.file_name)
+            heading = 'Watch {}'.format(file_name_no_underscores)  # Use modified file name
             tag = file_data.mime_type.split('/')[0].strip()
-
-            # Escape file_name here before assigning it to html
-            file_name_html = html.escape(file_data.file_name.strip())
-            html = (await r.read()).replace('tag', tag) % (heading, file_name_html, src)
+            html = (await r.read()).replace('tag', tag) % (heading, file_name_no_underscores, src)
     elif str(file_data.mime_type.split('/')[0].strip()) == 'audio':
         async with aiofiles.open('Adarsh/template/req.html') as r:
-            heading = 'Listen {}'.format(file_data.file_name)
+            heading = 'Listen {}'.format(file_name_no_underscores)  # Use modified file name
             tag = file_data.mime_type.split('/')[0].strip()
-
-            # Escape file_name here before assigning it to html
-            file_name_html = html.escape(file_data.file_name.strip())
-            html = (await r.read()).replace('tag', tag) % (heading, file_name_html, src)
+            html = (await r.read()).replace('tag', tag) % (heading, file_name_no_underscores, src)
     else:
         async with aiofiles.open('Adarsh/template/dl.html') as r:
             async with aiohttp.ClientSession() as s:
                 async with s.get(src) as u:
-                    heading = 'Download {}'.format(file_data.file_name)
+                    heading = 'Download {}'.format(file_name_no_underscores)  # Use modified file name
                     file_size = humanbytes(int(u.headers.get('Content-Length')))
-
-                    # Escape file_name here before assigning it to html
-                    file_name_html = html.escape(file_data.file_name.strip())
-                    html = (await r.read()) % (heading, file_name_html, src, file_size)
-
+                    html = (await r.read()) % (heading, file_name_no_underscores, src, file_size)
     return html
