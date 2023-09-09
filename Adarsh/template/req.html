@@ -326,36 +326,35 @@
 
     </script>
 	<script>
-  // Add a click event listener to the "shareLink" element
-  document.getElementById('shareLink').addEventListener('click', function () {
-    if (navigator.share) {
-      navigator.share({
-        title: document.title,
-        url: window.location.href
-      }).then(() => {
-        console.log('Shared successfully');
-      }).catch((error) => {
-        console.error('Error sharing:', error);
-      });
-    } else {
-      console.log('Web Share API is not supported in this browser.');
-      // You can provide a fallback sharing method for unsupported browsers here.
-      // Fallback: Create a custom sharing dialog or provide share links
-      const customSharingDialog = document.createElement('div');
-      customSharingDialog.innerHTML = `
-        <p>Share this content:</p>
-        <ul>
-          <li><a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}" target="_blank">Share on Facebook</a></li>
-          <li><a href="mailto:?subject=Share%20Title&body=Check%20out%20this%20link:%20${encodeURIComponent(window.location.href)}" target="_blank">Share via Email</a></li>
-	  
-        </ul>
-      `;
-
-      // Add the custom sharing dialog to the document
-      document.body.appendChild(customSharingDialog);
-    }
-  });
-</script>
+        document.getElementById('shareLink').addEventListener('click', function () {
+            if (navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    url: window.location.href
+                }).then(() => {
+                    console.log('Shared successfully');
+                }).catch((error) => {
+                    console.error('Error sharing:', error);
+                });
+            } else {
+                console.log('Web Share API is not supported in this browser.');
+                // You can provide a fallback sharing method for unsupported browsers here.
+                // For example, create a custom sharing dialog or provide share links.
+                const customSharingDialog = document.createElement('div');
+                customSharingDialog.innerHTML = `
+                    <p>Share this content:</p>
+                    <ul>
+                        <li><a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}" target="_blank">Share on Facebook</a></li>
+                        <li><a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=Check%20out%20this%20page:%20${encodeURIComponent(document.title)}" target="_blank">Share on Twitter</a></li>
+                        <li><a href="mailto:?subject=${encodeURIComponent(document.title)}&body=Check%20out%20this%20page:%20${encodeURIComponent(window.location.href)}" target="_blank">Share via Email</a></li>
+                    </ul>
+                `;
+                
+                // Add the custom sharing dialog to the document
+                document.body.appendChild(customSharingDialog);
+            }
+        });
+	</script>
 
 
 
