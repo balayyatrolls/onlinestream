@@ -332,10 +332,12 @@
   if (navigator.share) {
     shareButton.addEventListener('click', () => {
       // Use the Web Share API
+	    const currentURL = window.location.href;
+	    const currentTitle = document.title;
       navigator.share({
-        title: 'Share Title',
-        text: 'Share Text',
-        url: 'https://example.com'
+        title: currentTitle,
+        text: 'Hello, I am sharing a movie click here to watch movie',
+        url: currentURL
       })
       .then(() => console.log('Shared successfully'))
       .catch(error => console.error('Error sharing:', error));
