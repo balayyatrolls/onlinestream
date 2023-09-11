@@ -11,7 +11,7 @@ import aiohttp
 async def render_page(id, secure_hash):
     file_data = await get_file_ids(StreamBot, int(Var.BIN_CHANNEL), int(id))
     if file_data.unique_id[:6] != secure_hash:
-        logging.debug(f'link hash: {secure_hash} - {file_data.unique_id[:6]}')
+        logging.debug(f'link hash: {secure_hash} - {file_data.unique_id[:4]}')
         logging.debug(f"Invalid hash for message with - ID {id}")
         raise InvalidHash
     src = urllib.parse.urljoin(Var.URL, f'{secure_hash}{str(id)}')
