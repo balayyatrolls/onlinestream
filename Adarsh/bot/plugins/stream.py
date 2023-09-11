@@ -31,7 +31,6 @@ async def login_handler(c: Client, m: Message):
                 if textp == "/cancel":
                    await ag.edit("Process Cancelled Successfully")
                    return
-                   
             else:
                 return
         except TimeoutError:
