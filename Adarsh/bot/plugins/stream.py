@@ -31,12 +31,13 @@ async def login_handler(c: Client, m: Message):
                 if textp == "/cancel":
                    await ag.edit("Process Cancelled Successfully")
                    return
-                    print(f" User enterred password is : {textp}")
+                   
             else:
                 return
         except TimeoutError:
             await ag.edit("I can't wait more for password, try again")
             return
+            print(f" User enterred password is : {textp}")
         if textp == MY_PASS:
             await pass_db.add_user_pass(m.chat.id, textp)
             ag_text = "yeah! you entered the password correctly"
